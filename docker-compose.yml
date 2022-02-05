@@ -1,0 +1,7 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./ATS/Dockerfile
+    ports:
+      - "8080:80"

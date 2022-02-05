@@ -1,0 +1,618 @@
+{
+	"info": {
+		"_postman_id": "1e7918cf-7860-42d1-8ab7-113495eb462e",
+		"name": "JobOpenings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check jobOpeningId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.jobOpeningId).to.be.a(\"number\");\r",
+							"    \r",
+							"    pm.collectionVariables.set(\"jobOpeningId\", jsonData.jobOpeningId);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check positionName field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.positionName).to.eql(\r",
+							"        pm.collectionVariables.get(\"positionName\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\r",
+							"        pm.collectionVariables.get(\"description\")\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"position\": \"Intern\",\r\n    \"description\": \"Make coffee\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/JobOpening",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check jobOpeningId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.jobOpeningId).to.eql(pm.collectionVariables.get(\"jobOpeningId\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check positionName field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.positionName).to.eql(\r",
+							"        pm.collectionVariables.get(\"positionName\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\r",
+							"        pm.collectionVariables.get(\"description\")\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/JobOpening/{{jobOpeningId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening",
+						"{{jobOpeningId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"{{updated-description}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/JobOpening/{{jobOpeningId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening",
+						"{{jobOpeningId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Get after Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check jobOpeningId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.jobOpeningId).to.eql(pm.collectionVariables.get(\"jobOpeningId\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check positionName field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.positionName).to.eql(\r",
+							"        pm.collectionVariables.get(\"positionName\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\r",
+							"        pm.collectionVariables.get(\"updated-description\")\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/JobOpening/{{jobOpeningId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening",
+						"{{jobOpeningId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check candidateId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateId).to.be.a(\"number\");\r",
+							"    \r",
+							"    pm.collectionVariables.set(\"candidateId\", jsonData.candidateId);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateName\")\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{candidateName}}",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"contentType": "",
+							"type": "file",
+							"src": "/C:/Users/kasa/AppData/Local/Postman/app-9.12.2/snapshot_blob.bin"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/Candidate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Candidate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apply for JobOpening",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check jobOpeningId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.jobOpeningId).to.eql(\r",
+							"        pm.collectionVariables.get(\"jobOpeningId\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check candidateId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateId).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateId\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check candidateId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateId).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateId\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check positionName field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.positionName).to.eql(\r",
+							"        pm.collectionVariables.get(\"positionName\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\r",
+							"        pm.collectionVariables.get(\"updated-description\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateName).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateName\")\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"candidateId\": \"{{candidateId}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/JobOpening/{{jobOpeningId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening",
+						"{{jobOpeningId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Get JobApplication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check jobOpeningId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.jobOpeningId).to.eql(\r",
+							"        pm.collectionVariables.get(\"jobOpeningId\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check candidateId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateId).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateId\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check candidateId field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateId).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateId\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check positionName field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.positionName).to.eql(\r",
+							"        pm.collectionVariables.get(\"positionName\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check description field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.eql(\r",
+							"        pm.collectionVariables.get(\"updated-description\")\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name field exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.candidateName).to.eql(\r",
+							"        pm.collectionVariables.get(\"candidateName\")\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/JobApplication/{{jobOpeningId}}/{{candidateId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobApplication",
+						"{{jobOpeningId}}",
+						"{{candidateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Candidate/{{candidateId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Candidate",
+						"{{candidateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Candidate is removed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Candidate/{{candidateId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Candidate",
+						"{{candidateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/JobOpening/{{jobOpeningId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening",
+						"{{jobOpeningId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test JobOpening is removed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/JobOpening/{{jobOpeningId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"JobOpening",
+						"{{jobOpeningId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jobOpeningId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "candidateId",
+			"value": ""
+		},
+		{
+			"key": "positionName",
+			"value": "Intern",
+			"type": "default"
+		},
+		{
+			"key": "description",
+			"value": "Make coffee",
+			"type": "default"
+		},
+		{
+			"key": "candidateName",
+			"value": "test",
+			"type": "default"
+		},
+		{
+			"key": "updated-description",
+			"value": "Make coffe and xerox documents",
+			"type": "default"
+		}
+	]
+}
