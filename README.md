@@ -38,3 +38,5 @@ Os endpoints sao:
 `api/JobOpening` para Vagas. Possui o CRUD completo mais dois endpoints. Um para listagem de Candidatos para determinada vaga e outra para o Candidato se candidatar a uma vaga.
 
 `api/JobApplication` foi criado apenas para a leitura (Read) de uma Candidatura.
+
+O swagger possui documentação de cada endpoint.
